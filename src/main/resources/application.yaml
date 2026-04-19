@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: mcp-app
+
+  ai:
+    openai:
+      api-key: ${OPEN_AI_KEY}
+
+server:
+  port: 8081
+
+logging:
+  level:
+    org:
+      springframework:
+        ai:
+          chat:
+            client:
+              advisor: DEBUG
