@@ -2,6 +2,7 @@ package com.suvam.mcp_app.controller;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
+import org.springframework.ai.tool.ToolCallbackProvider;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,8 +15,9 @@ public class AiController {
 
     private ChatClient chatClient;
 
-    public AiController(ChatClient.Builder chatClientBuilder){
+    public AiController(ChatClient.Builder chatClientBuilder, ToolCallbackProvider toolCallbackProvider) {
         this.chatClient = chatClientBuilder
+                .defaultToolCallbacks(toolCallbackProvider)
                 .defaultAdvisors(new SimpleLoggerAdvisor())
                 .build();
     }
